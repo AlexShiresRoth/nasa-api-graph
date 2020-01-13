@@ -1,12 +1,19 @@
-import { selectors } from './selectors';
-import Search from '../controller/search';
+import { selectors } from '../model/selectors';
+import { state } from '../index';
 
 export const graphModule = () => {
-	const handleSearchClick = e => {
-		console.log(e.target);
-		const search = new Search();
-		return search.handleSearch();
+	const displayDates = () => {
+		let datesArr = [];
+		for (let date in state.data.near_earth_objects) {
+			let dataPiece = document.createElement('div');
+			dataPiece.classList.add('data');
+			dataPiece.innerHTML = `<p>${date}</p>`;
+			datesArr = [...datesArr, dataPiece];
+		}
+		if (datesArr.length > 0) {
+			selectors.dateDisplay.insertAdjacentHTML('afterbegin', datesArr.map((item, i) => item).join(' '));
+		}
 	};
-	console.log('loaded');
-	selectors.searchBtn.addEventListener('click', e => handleSearchClick(e));
+
+	return [displayDates];
 };

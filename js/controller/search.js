@@ -10,7 +10,8 @@ export default class Search {
 			const res = await axios.get(
 				`https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-01-01&end_date=2015-01-08&api_key=${api_key}`
 			);
-			console.log(res.data);
+			this.data = res.data;
+			return res.data;
 		} catch (error) {
 			console.error(error);
 		}

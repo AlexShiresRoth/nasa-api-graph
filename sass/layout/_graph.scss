@@ -20,16 +20,29 @@
 		justify-content: space-between;
 		&--data {
 			display: flex;
-			height: 100%;
+			min-height: 20rem;
 			&--left {
 				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
 				flex: 1;
-				border-right: 1px solid #666;
 			}
-			&--bottom {
+			&--content {
 				display: flex;
+				flex-direction: column;
 				flex: 3;
-				border-bottom: 1px solid #666;
+				border-left: 1px solid #666;
+
+				&--inside {
+					height: 100%;
+					border-bottom: 1px solid #666;
+				}
+				&--dates {
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-start;
+				}
 			}
 		}
 		&--search {

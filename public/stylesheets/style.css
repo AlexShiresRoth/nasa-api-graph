@@ -21,15 +21,25 @@
     justify-content: space-between; }
     .main__container .graph__container--data {
       display: flex;
-      height: 100%; }
+      min-height: 20rem; }
       .main__container .graph__container--data--left {
         display: flex;
-        flex: 1;
-        border-right: 1px solid #666; }
-      .main__container .graph__container--data--bottom {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1; }
+      .main__container .graph__container--data--content {
         display: flex;
+        flex-direction: column;
         flex: 3;
-        border-bottom: 1px solid #666; }
+        border-left: 1px solid #666; }
+        .main__container .graph__container--data--content--inside {
+          height: 100%;
+          border-bottom: 1px solid #666; }
+        .main__container .graph__container--data--content--dates {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start; }
     .main__container .graph__container--search {
       padding: 1rem 2rem;
       border-radius: 5px;
