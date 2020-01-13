@@ -1,0 +1,27 @@
+{
+	"name": "data-graphjs",
+	"version": "1.0.0",
+	"description": "graph of data",
+	"main": "webpack.config.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "webpack --mode=development",
+		"compile:sass": "node-sass --include-path sass sass/main.scss public/stylesheets/style.css"
+	},
+	"author": "Alex Rothenberg",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.19.1",
+		"path": "^0.12.7"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.8.0",
+		"@babel/polyfill": "^7.8.0",
+		"@babel/preset-env": "^7.8.2",
+		"babel-loader": "^8.0.6",
+		"node-sass": "^4.13.0",
+		"style-loader": "^1.1.2",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10"
+	}
+}
