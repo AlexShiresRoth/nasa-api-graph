@@ -6,45 +6,86 @@
   align-items: center;
   min-height: 100vh;
   width: 100vw;
-  background-color: #330033;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='304' height='304' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23404' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23505'%3E%3Ccircle cx='769' cy='229' r='8'/%3E%3Ccircle cx='539' cy='269' r='8'/%3E%3Ccircle cx='603' cy='493' r='8'/%3E%3Ccircle cx='731' cy='737' r='8'/%3E%3Ccircle cx='520' cy='660' r='8'/%3E%3Ccircle cx='309' cy='538' r='8'/%3E%3Ccircle cx='295' cy='764' r='8'/%3E%3Ccircle cx='40' cy='599' r='8'/%3E%3Ccircle cx='102' cy='382' r='8'/%3E%3Ccircle cx='127' cy='80' r='8'/%3E%3Ccircle cx='370' cy='105' r='8'/%3E%3Ccircle cx='578' cy='42' r='8'/%3E%3Ccircle cx='237' cy='261' r='8'/%3E%3Ccircle cx='390' cy='382' r='8'/%3E%3C/g%3E%3C/svg%3E"); }
+  background-color: #eee; }
   .main__container .graph__container {
     padding: 1rem;
     display: flex;
-    min-height: 60vh;
-    width: 60vw;
+    min-height: 40rem;
+    min-width: 70rem;
+    max-width: 70rem;
     background: #fff;
     border-radius: 15px;
-    box-shadow: 0 5px 5px #1a001a;
+    box-shadow: 0 5px 5px #e1e1e1;
     display: flex;
     flex-direction: column;
     justify-content: space-between; }
+    .main__container .graph__container h1 {
+      text-transform: uppercase; }
     .main__container .graph__container--data {
       display: flex;
       min-height: 20rem; }
       .main__container .graph__container--data--left {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        flex-direction: row;
         flex: 1; }
+        .main__container .graph__container--data--left--title {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 0.5; }
+          .main__container .graph__container--data--left--title p {
+            text-align: center; }
       .main__container .graph__container--data--content {
         display: flex;
-        flex-direction: column;
-        flex: 3;
-        border-left: 1px solid #666; }
-        .main__container .graph__container--data--content--inside {
-          height: 100%;
-          border-bottom: 1px solid #666; }
-        .main__container .graph__container--data--content--dates {
+        flex-direction: row;
+        flex: 3; }
+        .main__container .graph__container--data--content--amts {
           display: flex;
-          flex-direction: row;
-          justify-content: flex-start; }
+          flex-direction: column;
+          align-items: flex-end;
+          position: relative;
+          height: 20rem; }
+          .main__container .graph__container--data--content--amts .amount {
+            width: 50rem;
+            left: -1rem; }
+        .main__container .graph__container--data--content--data-container {
+          display: flex;
+          flex-direction: column; }
+          .main__container .graph__container--data--content--data-container--inside {
+            height: 20rem;
+            border-left: 1px solid #666;
+            border-bottom: 1px solid #666;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 1rem; }
+            .main__container .graph__container--data--content--data-container--inside .data {
+              max-height: 20rem; }
+              .main__container .graph__container--data--content--data-container--inside .data--show {
+                display: flex;
+                width: 100%;
+                transition: all 0.3s ease-in-out;
+                align-self: end;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                animation: animheight 1s linear 0.3s forwards; }
+          .main__container .graph__container--data--content--data-container--dates {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 1rem; }
+            .main__container .graph__container--data--content--data-container--dates .date p {
+              color: #5000ca; }
+            .main__container .graph__container--data--content--data-container--dates .date:not(:first-child) {
+              border-left: 1px solid #5000ca; }
+          .main__container .graph__container--data--content--data-container--dates-title {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 1rem 0; }
     .main__container .graph__container--search {
       padding: 1rem 2rem;
       border-radius: 5px;
-      color: rgba(51, 0, 51, 0.8);
-      border: 1px solid rgba(51, 0, 51, 0.8);
+      color: #5600d9;
+      border: 3px solid #5600d9;
       transition: all 0.3s ease-in-out;
       font-size: 1.5rem;
       letter-spacing: 1px;
@@ -53,10 +94,20 @@
       .main__container .graph__container--search:hover {
         cursor: pointer;
         color: #f3f3f3;
-        background: #420042;
-        box-shadow: 0 4px 4px #290029; }
+        background: #5600d9;
+        box-shadow: 0 4px 4px #4c00c0; }
       .main__container .graph__container--search:focus {
         outline: 1px solid transparent; }
+
+@keyframes animheight {
+  0% {
+    opacity: 0;
+    height: 0; }
+  90% {
+    opacity: 1;
+    height: var(calc(--h / 2)); }
+  100% {
+    height: var(--h); } }
 
 html,
 body {

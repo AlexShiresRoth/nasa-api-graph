@@ -3,7 +3,9 @@ import { selectors } from './model/selectors';
 import Search from './controller/search';
 
 const graphClosure = graphModule();
-const getStateData = graphClosure[0];
+const displayDates = graphClosure[0];
+const displayObjectAmt = graphClosure[1];
+const displayAmtOnLeftSide = graphClosure[2];
 
 export const state = {};
 
@@ -16,8 +18,12 @@ const controlSearch = async query => {
 
 		//this references the search class
 		state.data = state.search.data;
-
-		getStateData();
+		//Show date parameters on UI
+		displayDates();
+		//Display amount of objects near earth per date
+		displayObjectAmt();
+		//Display the total object encounters on left of graph
+		displayAmtOnLeftSide();
 	}
 };
 
