@@ -9,7 +9,9 @@ export const graphModule = () => {
 		for (let date in state.data.near_earth_objects) {
 			datesArr = [...datesArr, date];
 		}
-		const dateMap = datesArr.map((date, i) => {
+		const sortedDates = datesArr.sort((a, b) => a - b);
+
+		const dateMap = sortedDates.map((date, i) => {
 			const markdown = `<div class="date"><p style="color:${bgColors[i]};">${date}</p></div>`;
 			return markdown;
 		});
@@ -24,7 +26,8 @@ export const graphModule = () => {
 		for (let item in earthObjs) {
 			items = [...items, { item: earthObjs[item] }];
 		}
-		const itemMap = items.map((data, i) => {
+		const sortedItems = items.sort((a, b) => a - b);
+		const itemMap = sortedItems.map((data, i) => {
 			const markup = `
             <div class="data--show" 
             style="background: ${bgColors[i]}; --h:${data.item.length}rem;">
@@ -53,6 +56,7 @@ export const graphModule = () => {
 						border-bottom: 1px solid ${bgColors[i]};">${amt}<p></div>`;
 			return markup;
 		});
+
 		//render the markup as to not repeat if button is pressed multiple times
 		return (selectors.amountDisplay.innerHTML = totalMap.join(' '));
 	};
