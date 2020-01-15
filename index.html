@@ -12,19 +12,30 @@
 	</head>
 	<body>
 		<div class="main__container">
+			<canvas class="canvas" id="canvas"></canvas>
 			<div class="graph__container">
 				<div class="graph__container--heading">
 					<h1>Asteroids near you</h1>
 					<form class="graph__container--heading--form" id="search-form">
-						<p>Please select a start and end date that ranges a week apart.</p>
-						<input id="start-date" type="date" required />
-						<input id="end-date" type="date" required />
-						<button class="graph__container--heading--form--search" id="searchBtn">Search</button>
+						<p>Please select a start and end date that ranges, at most, a week apart.</p>
+						<div class="graph__container--heading--form--input-group" id="input-group">
+							<div class="graph__container--heading--form--input-group--column">
+								<label for="start-date">Start Date</label>
+								<input id="start-date" type="date" required name="start-date" />
+							</div>
+							<div class="graph__container--heading--form--input-group--column">
+								<label for="end-date">End Date</label>
+								<input id="end-date" type="date" name="end-date" required />
+							</div>
+							<button class="graph__container--heading--form--input-group--search" id="searchBtn">
+								Search
+							</button>
+						</div>
 					</form>
 				</div>
 				<div class="graph__container--data">
 					<div class="graph__container--data--left">
-						<div class="graph__container--data--left--title">
+						<div class="graph__container--data--left--title" id="total-display">
 							<p>Amount of objects near earth at a certain date</p>
 						</div>
 					</div>

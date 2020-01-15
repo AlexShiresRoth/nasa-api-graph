@@ -60,5 +60,11 @@ export const graphModule = () => {
 		//render the markup as to not repeat if button is pressed multiple times
 		return (selectors.amountDisplay.innerHTML = totalMap.join(' '));
 	};
-	return [displayDates, displayObjectAmt, displayAmtOnLeftSide];
+
+	const handleTotalDisplay = () => {
+		console.log(state.data.element_count);
+		const markup = `<p class="element-count">${state.data.element_count}</p>`;
+		return selectors.totalDisplay.insertAdjacentHTML('afterbegin', markup);
+	};
+	return [displayDates, displayObjectAmt, displayAmtOnLeftSide, handleTotalDisplay];
 };
