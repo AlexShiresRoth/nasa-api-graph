@@ -6,10 +6,24 @@ export const canvas = () => {
 	const canvasDimensions = selectors.canvas.getBoundingClientRect();
 	const ctx = selectors.canvas.getContext('2d');
 	let dpi = window.devicePixelRatio;
-	let x = 0;
-	let y = 0;
+	let x = Math.random() * 100;
+	let y = Math.random() * 100;
 	let dx = 2;
 	let dy = -2;
+	let animationRef;
+	//let img = new Image();
+	let imgs = [];
+
+	const createImgsArr = () => {
+		let count = state.data.element_count;
+		let newImg;
+		while (count > 0) {
+			newImg = new Image();
+			imgs.push(newImg);
+			count--;
+		}
+		console.log(imgs);
+	};
 	//fix image scaling on canvas
 	const fixDpi = () => {
 		let style = {
@@ -28,14 +42,17 @@ export const canvas = () => {
 		selectors.canvas.setAttribute('height', style.height() * dpi);
 	};
 
-	const handleSvgDisplay = () => {
-		if (selectors.canvas.getContext) {
-			fixDpi();
+	const animate = () => {
+		handleSvgDisplay();
+		fixDpi();
+	};
 
-			let img = new Image();
-			img.onload = function() {
-				ctx.imageSmoothingEnabled = false;
+	const handleSvgDisplay = () => {
+		ctx.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
+		imgs.map(img => {
+			if (selectors.canvas.getContext) {
 				ctx.drawImage(img, x, y);
+
 				if (y + dy < canvasDimensions.y) {
 					dy = -dy;
 				}
@@ -50,14 +67,12 @@ export const canvas = () => {
 				}
 				x += dx;
 				y += dy;
-			};
 
-			img.src = asteroid;
-		}
+				img.src = asteroid;
+				console.log(x, y);
+			}
+		});
+		requestAnimationFrame(handleSvgDisplay);
 	};
-	setInterval(() => {
-		handleSvgDisplay();
-	}, 1000 / 60);
-	console.log(canvasDimensions);
-	return [handleSvgDisplay];
+	return [animate, createImgsArr];
 };
