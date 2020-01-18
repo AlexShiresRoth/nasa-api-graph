@@ -6,20 +6,16 @@ export const canvas = () => {
 	const canvasDimensions = selectors.canvas.getBoundingClientRect();
 	const ctx = selectors.canvas.getContext('2d');
 	let dpi = window.devicePixelRatio;
-	let x = Math.random() * 100;
-	let y = Math.random() * 100;
-	let dx = 2;
-	let dy = -2;
-	let animationRef;
-	//let img = new Image();
+
 	let imgs = [];
 
 	const createImgsArr = () => {
+		if (imgs.length > 0) imgs.splice(0, imgs.length);
 		let count = state.data.element_count;
 		let newImg;
 		while (count > 0) {
 			newImg = new Image();
-			imgs.push(newImg);
+			imgs.push({ newImg, x: count * Math.random() + 100, y: count * Math.random() + 100, dx: 2, dy: -2 });
 			count--;
 		}
 		console.log(imgs);
@@ -49,27 +45,26 @@ export const canvas = () => {
 
 	const handleSvgDisplay = () => {
 		ctx.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
-		imgs.map(img => {
+		imgs.map((img, i) => {
 			if (selectors.canvas.getContext) {
-				ctx.drawImage(img, x, y);
+				ctx.drawImage(img.newImg, img.x, img.y);
 
-				if (y + dy < canvasDimensions.y) {
-					dy = -dy;
+				if (img.y + img.dy < canvasDimensions.y) {
+					img.dy = -img.dy;
 				}
-				if (y + dy > canvasDimensions.height) {
-					dy = -dy;
+				if (img.y + img.dy > canvasDimensions.height) {
+					img.dy = -img.dy;
 				}
-				if (x + dx > canvasDimensions.width) {
-					dx = -dx;
+				if (img.x + img.dx > canvasDimensions.width) {
+					img.dx = -img.dx;
 				}
-				if (x + dx < canvasDimensions.x) {
-					dx = -dx;
+				if (img.x + img.dx < canvasDimensions.x) {
+					img.dx = -img.dx;
 				}
-				x += dx;
-				y += dy;
+				img.x += img.dx;
+				img.y += img.dy;
 
-				img.src = asteroid;
-				console.log(x, y);
+				img.newImg.src = asteroid;
 			}
 		});
 		requestAnimationFrame(handleSvgDisplay);
